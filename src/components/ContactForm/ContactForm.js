@@ -25,7 +25,7 @@ class ContactForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    
+
     const contacts = this.props.items;
     const value = event.target.name.value;
 
@@ -102,7 +102,7 @@ class ContactForm extends Component {
           Add contact
         </button>
       </form>
-    );    
+    );
   }
 }
 

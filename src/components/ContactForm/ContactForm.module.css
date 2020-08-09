@@ -55,25 +55,4 @@
   text-align: center;
   line-height: 50px;
 }
-/* 
-.alertWindowEnter{
-  opacity: 0;
-  transform: translateX(200px);
-}
 
-.alertWindowEnterActive{
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 500ms linear;
-}
-
-.alertWindowExit{
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.alertWindowExitActive{
-  opacity: 0;
-  transform: translateX(-200px);
-  transition: all 500ms linear;
-} */

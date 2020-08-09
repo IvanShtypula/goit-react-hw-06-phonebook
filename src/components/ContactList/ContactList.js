@@ -1,23 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styleApp from "../../App.module.css";
 import titleStyle from "../../reverseTransition.module.css";
 import ListItem from "../ListItem/ListItem";
 
-class ContactList extends Component {
-  render() {
+const ContactList = ({items}) => { 
     return (
       <TransitionGroup component="ul" className={styleApp.contactsList}>
-        {this.props.items.length > 0 &&
-          this.props.items.map(({id}) => (
-            <CSSTransition key={id} classNames={titleStyle} timeout={800}>
+        {items.length > 0 &&
+          items.map(({id}) => (
+            <CSSTransition key={id} classNames={titleStyle} timeout={250}>
               <ListItem id={id}/>          
             </CSSTransition>
           ))}
       </TransitionGroup>
     );
-  }
 }
 
 const mapStateToProps = (state) => {

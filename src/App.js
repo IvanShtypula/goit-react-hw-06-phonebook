@@ -5,6 +5,7 @@ import ContactForm from "./components/ContactForm/ContactForm.js";
 import Filter from "./components/Filter/Filter.js";
 import ContactList from "./components/ContactList/ContactList.js";
 import { contactsFilter } from "./redux/actions/filterAction";
+import { itemsStorage } from "./redux/actions/storageAction";
 import styleApp from "./App.module.css";
 import titleStyle from "./reverseTransition.module.css";
 
@@ -14,16 +15,28 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const lastContacts = localStorage.getItem("items");
+    console.log(lastContacts);
+    if (lastContacts) {
+      this.props.itemsStorage(JSON.parse(lastContacts));
+    }
     this.setState({
       showTitle: true,
     });
   }
 
+  componentDidUpdate(prevState) {
+    // console.log(prevState)
+    if (prevState.items !== this.props.items) {
+      localStorage.setItem("items", JSON.stringify(this.props.items));
+    }
+  }
+
   render() {
-    const { showTitle } = this.state;  
+    const { showTitle } = this.state;
     return (
       <div className={styleApp.container}>
-        <CSSTransition classNames={titleStyle} in={showTitle} timeout={800}>
+        <CSSTransition classNames={titleStyle} in={showTitle} timeout={250}>
           <h1 className={styleApp.title}>Phonebook</h1>
         </CSSTransition>
         <ContactForm contacts={this.props.items} />
@@ -33,7 +46,6 @@ class App extends Component {
         <h2>Contacts</h2>
 
         <ContactList />
-
       </div>
     );
   }
@@ -47,6 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   contactsFilter,
+  itemsStorage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,6 +1,10 @@
 
 .enterActive {
-  animation: task 800ms ease-in alternate-reverse;
+  animation: task 250ms ease-in alternate-reverse;
+}
+
+.exitActive { 
+  animation: task 250ms ease-in;
 }
 
 @keyframes task {
@@ -15,9 +19,4 @@
     opacity: 0;
     transform: translateX(-200px);
   }
-}
-
-.exitActive {
-  animation-duration: 800ms;
-  animation-name: task;
 }
